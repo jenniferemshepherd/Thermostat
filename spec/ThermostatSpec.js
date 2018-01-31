@@ -29,6 +29,12 @@ describe("Thermostat", function() {
       expect(function() { thermostat.up(13) }).toThrow(new Error("maximum temperature is 32"))
     });
 
+    it("can reset the temperature", function() {
+      thermostat.up(2)
+      thermostat.reset()
+      expect(thermostat.temperature).toEqual(20);
+    });
+
   });
 
   describe("power save mode", function() {
@@ -49,9 +55,26 @@ describe("Thermostat", function() {
     });
 
     it("won\'t increase beyond 25 if isPowersaving is true", function() {
-      expect(function() { thermostat.up(6) }).toThrow(new Error("maximum temperature is 25"))
+      expect(function() { thermostat.up(6) }).toThrow(new Error("maximum temperature is 25 in powersave mode"))
     });
 
+  });
+
+  describe("energy usage", function() {
+    it("returns low-usage if temperature is below 18", function() {
+      thermostat.down(4)
+      expect(thermostat.usage()).toEqual("low-usage")
+    });
+
+    it("returns medium-usage if temperature is between 18 and 24", function() {
+      expect(thermostat.usage()).toEqual("medium-usage")
+    });
+
+    it("returns high-usage if temperature is above 24", function() {
+      thermostat.modeSwitch()
+      thermostat.up(8)
+      expect(thermostat.usage()).toEqual("high-usage")
+    });
   });
 
 });
