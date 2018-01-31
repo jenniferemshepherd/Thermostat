@@ -25,6 +25,10 @@ describe("Thermostat", function() {
       expect(function() { thermostat.down(12) }).toThrow(new Error("minimum temperature is 10"))
     });
 
+    it("will not increase the temperature beyond 32 degrees", function() {
+      expect(function() { thermostat.up(13) }).toThrow(new Error("maximum temperature is 32"))
+    });
+
   });
 
   describe("power save mode", function() {
@@ -42,6 +46,10 @@ describe("Thermostat", function() {
       thermostat.modeSwitch()
       thermostat.modeSwitch()
       expect(thermostat.isPowersaving).toBeTruthy()
+    });
+
+    it("won\'t increase beyond 25 if isPowersaving is true", function() {
+      expect(function() { thermostat.up(6) }).toThrow(new Error("maximum temperature is 25"))
     });
 
   });
