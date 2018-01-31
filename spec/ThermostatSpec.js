@@ -27,4 +27,23 @@ describe("Thermostat", function() {
 
   });
 
+  describe("power save mode", function() {
+
+    it("is on by default", function() {
+      expect(thermostat.isPowersaving).toBeTruthy()
+    });
+
+    it("can be switched off", function() {
+      thermostat.modeSwitch()
+      expect(thermostat.isPowersaving).toBeFalsy()
+    });
+
+    it("can be switched on", function() {
+      thermostat.modeSwitch()
+      thermostat.modeSwitch()
+      expect(thermostat.isPowersaving).toBeTruthy()
+    });
+
+  });
+
 });
