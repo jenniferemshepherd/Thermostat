@@ -21,9 +21,10 @@ describe("Thermostat", function() {
       expect(thermostat.temperature).toEqual(18);
     });
 
-
+    it("will not decrease the temperature if it would result in lower than the min temperature", function() {
+      expect(function() { thermostat.down(12) }).toThrow(new Error("minimum temperature is 10"))
+    });
 
   });
-
 
 });
