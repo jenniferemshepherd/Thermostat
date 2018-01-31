@@ -9,10 +9,11 @@ Thermostat.prototype.up = function(number) {
 };
 
 Thermostat.prototype.down = function(number) {
-  if ((this.temperature - number) >= 10) {
-    this.temperature-=number
-  } else
+  if (this._isUnderMinTemp(number)) {
     throw new Error("minimum temperature is 10")
+  } else {
+    this.temperature-=number
+  }
 };
 
 Thermostat.prototype.modeSwitch = function() {
@@ -21,4 +22,8 @@ Thermostat.prototype.modeSwitch = function() {
   } else {
     this.isPowersaving = true
   }
+};
+
+Thermostat.prototype._isUnderMinTemp = function(number) {
+  return ((this.temperature - number) <= 10)
 };
