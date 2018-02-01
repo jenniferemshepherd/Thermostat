@@ -36,8 +36,16 @@ Thermostat.prototype.modeSwitch = function() {
   }
 };
 
-Thermostat.prototype._isUnderMinTemp = function(number) {
-  return ((this.temperature - number) <= this.MINTEMP)
+Thermostat.prototype._isMinTemp = function() {
+  return (this.temperature === this.MINTEMP)
+};
+
+Thermostat.prototype._isMaxTemp = function() {
+  return (this.temperature === this.MAXTEMP)
+};
+
+Thermostat.prototype._isPSMaxTemp = function() {
+  return (this.temperature === this.PSMAXTEMP)
 };
 
 Thermostat.prototype.usage = function() {
