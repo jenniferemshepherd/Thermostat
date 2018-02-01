@@ -11,21 +11,21 @@ Thermostat.prototype.reset = function() {
 };
 
 
-Thermostat.prototype.up = function(number) {
-  if (this.temperature + number > this.MAXTEMP) {
-    throw new Error(`maximum temperature is ${this.MAXTEMP}`)
+Thermostat.prototype.up = function() {
+  if (!this.isPowersaving && this._isMaxTemp()) {
+    return
   }
-  if (this.isPowersaving && (this.temperature + number > this.PSMAXTEMP)) {
-    throw new Error(`maximum temperature is ${this.PSMAXTEMP} in powersave mode`)
+  if (this.isPowersaving && this._isPSMaxTemp()) {
+    return
   }
-    this.temperature+=number
+    this.temperature+=1
 };
 
-Thermostat.prototype.down = function(number) {
-  if (this._isUnderMinTemp(number)) {
-    throw new Error(`minimum temperature is ${this.MINTEMP}`)
+Thermostat.prototype.down = function() {
+  if (this._isMinTemp()) {
+    return
   }
-    this.temperature-=number
+    this.temperature-=1
 };
 
 Thermostat.prototype.modeSwitch = function() {
