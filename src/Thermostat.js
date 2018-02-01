@@ -1,3 +1,5 @@
+console.log("Tom helped with the thermostat")
+
 function Thermostat() {
   this.temperature = 20;
   this.MAXTEMP = 32;
@@ -9,7 +11,6 @@ function Thermostat() {
 Thermostat.prototype.reset = function() {
   this.temperature = 20
 };
-
 
 Thermostat.prototype.up = function() {
   if (!this.isPowersaving && this._isMaxTemp()) {
