@@ -7,19 +7,18 @@
     <script src="src/Thermostat.js"></script>
     <script src="src/ThermostatJQuery.js"></script>
     <h1> My Thermostat </h1>
-
-
   </head>
   <body>
     <section>
-      <h1>Current temperature is: <id="temperature"></h1>
+<h2>Outside temperature is: <span id="outdoor-temperature"></span></h2>
+<h2>Weather is: <span id="weather-description"></span></h2>
+      <h1>Current temperature is: <span id="temperature"> </span></h1>
       <p>
         <button id="temperature-up">Hotter!</button>
         <button id="temperature-down">Colder!</button><br>
         <button id="temperature-reset">RESET</button><br>
-        I am <span id="power-saving-status">saving the environment </span><br>
-        <button id="powersaving-on">Save the environment</button>
-        <button id="powersaving-off">Kill the environment</button>
+        You are <span id="power-saving-status"></span><br>
+        <button id="change-powersaving-mode">change-powersaving-mode</button>
       </p>
     </section>
   </body>
