@@ -13,7 +13,7 @@ Instructions
 -------
 * Clone this repository
 * cd thermostat
-* 
+* run "open index.html"
 
 Specification:
 --------
